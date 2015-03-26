@@ -1,0 +1,29 @@
+{
+  "name": "web-tracer",
+  "version": "0.1.0",
+  "description": "Web tracer/debugger",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "./bin/web-tracer"
+  },
+  "keywords": [
+    "web",
+    "tracer",
+    "debugger",
+    "debug",
+    "http"
+  ],
+  "bin": {
+    "web-tracer": "./bin/web-tracer"
+  },
+  "author": "Dmitry Shirokov <deadrunk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "commander": "^2.7.1",
+    "express": "^4.12.3",
+    "localtunnel": "^1.5.0",
+    "lodash": "^3.6.0"
+  }
+}

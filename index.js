@@ -10,11 +10,14 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 app.all('/*', function(req, res, next) {
-  trace = _.pick(req, 'protocol', 'method', 'query', 'body', 'headers', 'url')
-  res.json(trace)
-  console.log('========================================')
+  var trace = _.pick(req, 'url', 'method', 'query', 'body', 'headers', 'protocol')
+
+  res.set('Content-Type', 'text/plain')
+  res.send(JSON.stringify(trace, null, 2))
+
+  console.log('Time: ', new Date().toISOString())
   console.log(util.inspect(trace, {colors: true, depth: 64}))
-  console.log('========================================\n')
+  console.log('\n========================================\n')
 })
 
 

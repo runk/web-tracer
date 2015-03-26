@@ -9,8 +9,8 @@ var app = express()
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-app.all('/test', function(req, res, next) {
-  trace = _.pick(req, 'protocol', 'method', 'query', 'body', 'headers')
+app.all('/*', function(req, res, next) {
+  trace = _.pick(req, 'protocol', 'method', 'query', 'body', 'headers', 'url')
   res.json(trace)
   console.log('========================================')
   console.log(util.inspect(trace, {colors: true, depth: 64}))

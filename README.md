@@ -26,6 +26,25 @@ npm i web-tracer -g
 
 ```
 
+
+### Using programmatically
+
+
+```
+var webtracer = require('web-tracer')
+
+webtracer({
+  external: 'mysubdomain', // to bind on https://mysubdomain.localtunnel.me/
+  port: 3000,
+  host: 'localhost',
+  onRequest: function(trace) {
+    console.log(trace)
+  }
+}, function(err, tunnel) {
+  console.log('Tracer has started', err, tunnel)
+})
+```
+
 ### License
 
 MIT

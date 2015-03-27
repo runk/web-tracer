@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
+  util = require('util'),
   program = require('commander');
 
 program
@@ -11,4 +12,16 @@ program
   .option('-e, --external [subdomain]', 'Custom subdomain name, e.g. foobar')
   .parse(process.argv);
 
-require('../index')(program);
+
+program.onRequest = function(trace) {
+  console.log('Time: ', new Date().toISOString())
+  console.log(util.inspect(trace, {colors: true, depth: 64}))
+  console.log('\n========================================\n')
+}
+
+
+require('../index')(program, function(err, tunnel) {
+  if (err) return console.error(err)
+  console.log('Listening on port %s:%d', program.host, program.port)
+  console.log('External address is: %s', tunnel.url)
+})

@@ -8,7 +8,7 @@ program
   .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version)
 
   .option('-h, --host [name]', 'Local host', 'localhost')
-  .option('-p, --port [number]', 'Local port', parseInt, 3000)
+  .option('-p, --port [number]', 'Local port', Number, 3000)
   .option('-e, --external [subdomain]', 'Custom subdomain name, e.g. foobar')
   .parse(process.argv);
 

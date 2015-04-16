@@ -21,15 +21,19 @@ module.exports = function(opts, cb) {
     res.send(JSON.stringify(trace, null, 2))
   })
 
-
+  var lt;
   var server = app.listen(opts.port, opts.host, function(err) {
     if (err) return console.error(err)
 
-    var lt = localtunnel(opts.port, {subdomain: opts.external}, cb)
+    lt = localtunnel(opts.port, {subdomain: opts.external}, cb)
 
     lt.on('close', function() {
       server.close()
       if (opts.onClose) opts.onClose()
     })
   })
+
+  return {
+    close: function() { lt.close() }
+  }
 }

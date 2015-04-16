@@ -33,7 +33,7 @@ npm i web-tracer -g
 ```
 var webtracer = require('web-tracer')
 
-webtracer({
+var tracer = webtracer({
   external: 'mysubdomain', // to bind on https://mysubdomain.localtunnel.me/
   port: 3000,
   host: 'localhost',
@@ -46,6 +46,8 @@ webtracer({
   // Stopping after 60 seconds
   setTimeout(function() { tunnel.close() }, 60000)
 })
+
+// use `tracer.close()` as an alternative method to gracefully close the tunnel
 ```
 
 ### License

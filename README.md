@@ -42,6 +42,9 @@ webtracer({
   }
 }, function(err, tunnel) {
   console.log('Tracer has started', err, tunnel)
+
+  // Stopping after 60 seconds
+  setTimeout(function() { tunnel.close() }, 60000)
 })
 ```
 

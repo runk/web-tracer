@@ -1,6 +1,6 @@
 {
   "name": "web-tracer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Web tracer/debugger",
   "main": "index.js",
   "scripts": {

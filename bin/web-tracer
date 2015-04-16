@@ -19,9 +19,22 @@ program.onRequest = function(trace) {
   console.log('\n========================================\n')
 }
 
+program.onClose = function() {
+  console.log('Tunnel closed')
+  process.exit()
+}
 
 require('../index')(program, function(err, tunnel) {
-  if (err) return console.error(err)
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+
   console.log('Listening on port %s:%d', program.host, program.port)
   console.log('External address is: %s', tunnel.url)
+
+  process.on('SIGINT', function() {
+    console.log('\nClosing tunnel...')
+    tunnel.close()
+  })
 })

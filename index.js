@@ -22,11 +22,14 @@ module.exports = function(opts, cb) {
   })
 
 
-  app.listen(opts.port, opts.host, function(err) {
+  var server = app.listen(opts.port, opts.host, function(err) {
     if (err) return console.error(err)
 
-    var tunnel = localtunnel(opts.port, {subdomain: opts.external}, cb)
-    tunnel.on('close', function() {})
-  })
+    var lt = localtunnel(opts.port, {subdomain: opts.external}, cb)
 
+    lt.on('close', function() {
+      server.close()
+      if (opts.onClose) opts.onClose()
+    })
+  })
 }
